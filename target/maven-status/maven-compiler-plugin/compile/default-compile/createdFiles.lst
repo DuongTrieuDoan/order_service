@@ -1,0 +1,13 @@
+com/example/microservice/order/service/domain/AutoValue_OrderQuery.class
+com/example/microservice/order/service/domain/OrderQuery$Builder.class
+com/example/microservice/order/service/repo/OrderRepository.class
+com/example/microservice/order/service/repo/OrderDetailRepository.class
+com/example/microservice/order/service/services/CustomerService.class
+com/example/microservice/order/service/domain/Order.class
+com/example/microservice/order/service/domain/AutoValue_OrderQuery$1.class
+com/example/microservice/order/service/domain/OrderQuery.class
+com/example/microservice/order/service/domain/AutoValue_OrderQuery$Builder.class
+com/example/microservice/order/service/services/OrderService.class
+com/example/microservice/order/service/OrderServiceApplication.class
+com/example/microservice/order/service/domain/Customer.class
+com/example/microservice/order/service/domain/OrderDetail.class

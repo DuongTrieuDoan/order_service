@@ -1,0 +1,10 @@
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/OrderServiceApplication.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/repo/CustomerRepository.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/repo/OrderRepository.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/domain/Customer.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/domain/Order.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/domain/OrderQuery.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/domain/OrderDetail.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/services/OrderService.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/services/CustomerService.java
+/Users/tranthituongvi/Downloads/order-service/src/main/java/com/example/microservice/order/service/repo/OrderDetailRepository.java
