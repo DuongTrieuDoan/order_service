@@ -17,5 +17,5 @@ public interface OrderRepository extends CrudRepository<Order, String> {
                                                                                     .anyMatch(orderDetail -> orderDetail.getName().equals(orderQuery.orderItemName())):true
                                     )
                             .collect(Collectors.toList());
-    };
+    }
 }

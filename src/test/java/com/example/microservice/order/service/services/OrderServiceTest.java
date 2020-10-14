@@ -83,22 +83,21 @@ public class OrderServiceTest {
 
     @Test
     public void findById_whenFound_returnOrder() {
-        Optional<Order> result = orderService.findById(order.getId());
+        Order result = orderService.findById(order.getId());
 
-        assertThat(result.isPresent(), is(true));
-        assertThat(result.get().getId(), is(order.getId()));
-        assertThat(result.get().getCustomerId(), is(order.getCustomerId()));
-        assertThat(result.get().getTotalAmount(), is(order.getTotalAmount()));
-        assertThat(matchAnyOrderDetail(result.get().getOrderDetailList(), order.getOrderDetailList()), is(true));
+        assertThat(result.getId(), is(order.getId()));
+        assertThat(result.getCustomerId(), is(order.getCustomerId()));
+        assertThat(result.getTotalAmount(), is(order.getTotalAmount()));
+        assertThat(matchAnyOrderDetail(result.getOrderDetailList(), order.getOrderDetailList()), is(true));
     }
 
     @Test
     public void findById_whenNotFound_returnException() {
         when(orderRepository.findById(order.getId())).thenReturn(Optional.empty());
+        expectedException.expect(EntityNotFoundException.class);
+        expectedException.expectMessage(String.format("Order with id %s is not found", order.getId()));
 
-        Optional<Order> result = orderService.findById(order.getId());
-
-        assertThat(result.isPresent(), is(false));
+        orderService.findById(order.getId());
     }
 
     @Test

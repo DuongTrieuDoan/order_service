@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class OrderService {
@@ -27,8 +29,9 @@ public class OrderService {
         this.customerService = customerService;
     }
 
-    public Optional<Order> findById(String orderId) {
-        return orderRepository.findById(orderId);
+    public Order findById(String orderId) {
+        return orderRepository.findById(orderId)
+                              .orElseThrow(() -> new EntityNotFoundException(String.format("Order with id %s is not found", orderId)));
     }
 
     public List<Order> findByCustomerId(String customerId){
@@ -45,34 +48,28 @@ public class OrderService {
     }
 
 
-    public void saveOrder(Order order) throws EntityNotFoundException {
+    public Order saveOrder(Order order) throws EntityNotFoundException {
         verifyCustomer(order.getCustomerId());
-        verifyOrder(order);
-        saveOrderWithOrderDetails(order);
+        findById(order.getId());
+        return saveOrderWithOrderDetails(order);
     }
 
     public Order createOrder(Order order) {
         verifyCustomer(order.getCustomerId());
-        saveOrderWithOrderDetails(order);
-        return order;
+        return saveOrderWithOrderDetails(order);
     }
 
-    private void saveOrderWithOrderDetails(Order order) {
-        orderRepository.save(order);
+    private Order saveOrderWithOrderDetails(Order order) {
+        Order savedOrder = orderRepository.save(order);
         Iterable<OrderDetail> orderDetails = order.getOrderDetailList();
-        orderDetailRepository.saveAll(orderDetails);
+        Iterable<OrderDetail> savedOrderDetails = orderDetailRepository.saveAll(orderDetails);
+        savedOrder.setOrderDetailList(StreamSupport.stream(savedOrderDetails.spliterator(), false).collect(Collectors.toList()));
+        return savedOrder;
     }
 
     private void verifyCustomer(String customerId) {
         if (!customerService.verifyCustomer(customerId)) {
             throw new EntityNotFoundException(String.format("Customer with id %s is not found", customerId));
-        }
-    }
-
-    private void verifyOrder(Order order){
-        Optional<Order> findOrder = findById(order.getId());
-        if (!findOrder.isPresent()){
-            throw new EntityNotFoundException(String.format("Order with id %s is not found", order.getId()));
         }
     }
 }

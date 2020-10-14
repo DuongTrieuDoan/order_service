@@ -1,9 +1,8 @@
 package com.example.microservice.order.service.domain;
 
-import javax.persistence.Id;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.HashSet;
