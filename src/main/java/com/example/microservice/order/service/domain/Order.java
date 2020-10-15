@@ -1,22 +1,29 @@
 package com.example.microservice.order.service.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Entity
+@Table(name = "orders")
 public class Order implements Serializable {
     @Id
     private String id;
-    @OneToMany(mappedBy = "order")
-    private Set<OrderDetail> orderDetailList;
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<OrderDetail> orderDetailList = new ArrayList<>();
     @Column
     private Long totalAmount;
     @Column
@@ -26,14 +33,14 @@ public class Order implements Serializable {
 
     public Order(String id, List<OrderDetail> orderDetailList, Long totalAmount, String customerId) {
         this.id = id;
-        this.orderDetailList =  new HashSet<>(orderDetailList);
+        this.orderDetailList =  orderDetailList;
         this.totalAmount = totalAmount;
         this.customerId = customerId;
     }
 
     public Order(List<OrderDetail> orderDetailList, Long totalAmount, String customerId) {
         this.id = UUID.randomUUID().toString();
-        this.orderDetailList = new HashSet<>(orderDetailList) ;
+        this.orderDetailList = orderDetailList;
         this.totalAmount = totalAmount;
         this.customerId = customerId;
     }
@@ -51,7 +58,7 @@ public class Order implements Serializable {
     }
 
     public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = new HashSet<>(orderDetailList);
+        this.orderDetailList = orderDetailList;
     }
 
     public Long getTotalAmount() {

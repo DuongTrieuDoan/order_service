@@ -2,13 +2,16 @@ package com.example.microservice.order.service.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
+@Table(name = "order_details")
 public class OrderDetail implements Serializable {
     @Id
     private String id;
@@ -22,8 +25,8 @@ public class OrderDetail implements Serializable {
     private Long price;
     @Column
     private Long totalAmount;
-    @ManyToOne
-    @JoinColumn(name="order_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     public OrderDetail(){}
