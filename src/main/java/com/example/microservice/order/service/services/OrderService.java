@@ -19,14 +19,17 @@ public class OrderService {
     private OrderRepository orderRepository;
     private OrderDetailRepository orderDetailRepository;
     private CustomerService customerService;
+    private PublishService publishService;
 
     @Autowired
     public OrderService(OrderRepository orderRepository,
                         OrderDetailRepository orderDetailRepository,
-                        CustomerService customerService) {
+                        CustomerService customerService,
+                        PublishService publishService) {
         this.orderRepository = orderRepository;
         this.orderDetailRepository = orderDetailRepository;
         this.customerService = customerService;
+        this.publishService = publishService;
     }
 
     public Order findById(String orderId) {
@@ -51,7 +54,9 @@ public class OrderService {
     public Order saveOrder(Order order) throws EntityNotFoundException {
         verifyCustomer(order.getCustomerId());
         findById(order.getId());
-        return saveOrderWithOrderDetails(order);
+        Order savedOrder = updateOrder(order);
+        publishService.sendOrderUpdate(savedOrder);
+        return savedOrder;
     }
 
     public Order createOrder(Order order) {
@@ -65,6 +70,11 @@ public class OrderService {
         Iterable<OrderDetail> savedOrderDetails = orderDetailRepository.saveAll(orderDetails);
         savedOrder.setOrderDetailList(StreamSupport.stream(savedOrderDetails.spliterator(), false).collect(Collectors.toList()));
         return savedOrder;
+    }
+
+    private Order updateOrder(Order order) {
+        orderRepository.deleteById(order.getId());
+        return saveOrderWithOrderDetails(order);
     }
 
     private void verifyCustomer(String customerId) {
