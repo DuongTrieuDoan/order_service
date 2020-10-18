@@ -12,9 +12,10 @@ com/example/microservice/order/service/services/CustomerService.class
 com/example/microservice/order/service/domain/Order.class
 com/example/microservice/order/service/domain/AutoValue_OrderQuery$1.class
 com/example/microservice/order/service/domain/OrderQuery.class
+com/example/microservice/order/service/domain/errorHandlers/MqException.class
 com/example/microservice/order/service/web/OrderController.class
+com/example/microservice/order/service/services/MessageQueueService.class
 com/example/microservice/order/service/domain/AutoValue_OrderQuery$Builder.class
-com/example/microservice/order/service/services/PublishService.class
 com/example/microservice/order/service/services/OrderService.class
 com/example/microservice/order/service/domain/errorHandlers/ApiError.class
 com/example/microservice/order/service/OrderServiceApplication.class

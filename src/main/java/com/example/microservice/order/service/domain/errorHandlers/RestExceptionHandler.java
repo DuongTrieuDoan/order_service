@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.jms.JMSException;
 import javax.persistence.EntityNotFoundException;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -37,8 +36,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-    @ExceptionHandler(JMSException.class)
-    protected ResponseEntity<Object> handleMQException(JMSException ex){
+    @ExceptionHandler(MqException.class)
+    protected ResponseEntity<Object> handleMQException(MqException ex){
         ApiError apiError = new ApiError(HttpStatus.EXPECTATION_FAILED);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);

@@ -19,17 +19,17 @@ public class OrderService {
     private OrderRepository orderRepository;
     private OrderDetailRepository orderDetailRepository;
     private CustomerService customerService;
-    private PublishService publishService;
+    private MessageQueueService messageQueueService;
 
     @Autowired
     public OrderService(OrderRepository orderRepository,
                         OrderDetailRepository orderDetailRepository,
                         CustomerService customerService,
-                        PublishService publishService) {
+                        MessageQueueService messageQueueService) {
         this.orderRepository = orderRepository;
         this.orderDetailRepository = orderDetailRepository;
         this.customerService = customerService;
-        this.publishService = publishService;
+        this.messageQueueService = messageQueueService;
     }
 
     public Order findById(String orderId) {
@@ -50,13 +50,11 @@ public class OrderService {
         return orderList;
     }
 
-
-    public Order saveOrder(Order order) throws EntityNotFoundException {
+    public Order saveOrder(Order order) {
         verifyCustomer(order.getCustomerId());
         findById(order.getId());
-        Order savedOrder = updateOrder(order);
-        publishService.sendOrderUpdate(savedOrder);
-        return savedOrder;
+        orderRepository.deleteById(order.getId());
+        return saveOrderWithOrderDetails(order);
     }
 
     public Order createOrder(Order order) {
@@ -69,12 +67,8 @@ public class OrderService {
         Iterable<OrderDetail> orderDetails = order.getOrderDetailList();
         Iterable<OrderDetail> savedOrderDetails = orderDetailRepository.saveAll(orderDetails);
         savedOrder.setOrderDetailList(StreamSupport.stream(savedOrderDetails.spliterator(), false).collect(Collectors.toList()));
+        messageQueueService.sendOrderUpdate(savedOrder);
         return savedOrder;
-    }
-
-    private Order updateOrder(Order order) {
-        orderRepository.deleteById(order.getId());
-        return saveOrderWithOrderDetails(order);
     }
 
     private void verifyCustomer(String customerId) {
