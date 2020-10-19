@@ -5,6 +5,7 @@ import com.example.microservice.order.service.domain.OrderDetail;
 import com.example.microservice.order.service.domain.OrderQuery;
 import com.example.microservice.order.service.repo.OrderDetailRepository;
 import com.example.microservice.order.service.repo.OrderRepository;
+import com.example.microservice.order.service.service.impl.MessageQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

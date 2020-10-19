@@ -1,5 +1,7 @@
-package com.example.microservice.order.service.domain.errorHandlers;
+package com.example.microservice.order.service.domain.errorhandler;
 
+import com.example.microservice.order.service.domain.errorhandler.ApiError;
+import com.example.microservice.order.service.exception.MqException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;

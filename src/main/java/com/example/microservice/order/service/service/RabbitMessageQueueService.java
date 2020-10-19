@@ -1,7 +1,7 @@
 package com.example.microservice.order.service.service;
 
 import com.example.microservice.order.service.domain.Order;
-import com.example.microservice.order.service.service.MessageQueueService;
+import com.example.microservice.order.service.service.impl.MessageQueueService;
 import com.example.microservice.order.service.dto.OrderDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
