@@ -1,7 +1,9 @@
-package com.example.microservice.order.service.web;
+package com.example.microservice.order.service.controller;
 
 import com.example.microservice.order.service.domain.Order;
-import com.example.microservice.order.service.services.OrderService;
+import com.example.microservice.order.service.dto.CreateOrderDto;
+import com.example.microservice.order.service.dto.OrderDto;
+import com.example.microservice.order.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

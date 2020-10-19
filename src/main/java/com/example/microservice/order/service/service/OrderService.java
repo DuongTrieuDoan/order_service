@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.services;
+package com.example.microservice.order.service.service;
 
 import com.example.microservice.order.service.domain.Order;
 import com.example.microservice.order.service.domain.OrderDetail;
@@ -67,7 +67,7 @@ public class OrderService {
         Iterable<OrderDetail> orderDetails = order.getOrderDetailList();
         Iterable<OrderDetail> savedOrderDetails = orderDetailRepository.saveAll(orderDetails);
         savedOrder.setOrderDetailList(StreamSupport.stream(savedOrderDetails.spliterator(), false).collect(Collectors.toList()));
-        messageQueueService.sendOrderUpdate(savedOrder);
+        messageQueueService.publishMessage(MessageQueueService.SEND_CUSTOMER_ORDER_CONFIRMATION_QUEUE, savedOrder);
         return savedOrder;
     }
 

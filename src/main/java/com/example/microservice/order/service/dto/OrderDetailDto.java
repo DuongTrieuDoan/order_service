@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.web;
+package com.example.microservice.order.service.dto;
 
 import com.example.microservice.order.service.domain.Order;
 import com.example.microservice.order.service.domain.OrderDetail;

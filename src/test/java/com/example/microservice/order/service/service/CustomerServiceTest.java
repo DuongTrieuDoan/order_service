@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.services;
+package com.example.microservice.order.service.service;
 
 import com.example.microservice.order.service.domain.Customer;
 import org.junit.Before;

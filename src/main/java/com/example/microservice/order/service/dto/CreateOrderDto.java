@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.web;
+package com.example.microservice.order.service.dto;
 
 import com.example.microservice.order.service.domain.Order;
 import com.google.common.collect.Lists;
@@ -6,44 +6,29 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderDto {
-    private String id;
+public class CreateOrderDto {
     private List<OrderDetailDto> orderDetailList;
     private Long totalAmount;
     private String customerId;
 
-    protected OrderDto(){}
+    protected CreateOrderDto(){}
 
-    public OrderDto(String id, List<OrderDetailDto> orderDetailList, Long totalAmount, String customerId) {
-        this.id = id;
+    public CreateOrderDto(List<OrderDetailDto> orderDetailList, Long totalAmount, String customerId) {
         this.orderDetailList = orderDetailList;
         this.totalAmount = totalAmount;
         this.customerId = customerId;
     }
 
-    public static OrderDto fromDomain(com.example.microservice.order.service.domain.Order order){
-        return new OrderDto(order.getId(),
-                            order.getOrderDetailList().stream()
-                                                .map(orderDetail -> OrderDetailDto.fromDomain(orderDetail))
-                                                .collect(Collectors.toList()),
-                            order.getTotalAmount(),
-                            order.getCustomerId());
-    }
-
-    public Order toDomain(){
-        Order order = new Order(this.id, Lists.newArrayList(), this.totalAmount, this.customerId);
+    public Order createOrder() {
+        Order order = new Order(Lists.newArrayList(), this.totalAmount, this.customerId);
         order.setOrderDetailList(this.orderDetailList.stream()
                                                      .map(orderDetailDto -> orderDetailDto.createOrderDetail(order))
                                                      .collect(Collectors.toList()));
         return order;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public Order toDomain(){
+        return null;
     }
 
     public List<OrderDetailDto> getOrderDetailList() {
