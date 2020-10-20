@@ -140,7 +140,7 @@ public class OrderServiceTest {
 
     @Test
     public void saveOrder_saveCorrectOrder() {
-        orderService.saveOrder(order);
+        orderService.save(order);
 
         verify(orderRepository).save(orderArgumentCaptor.capture());
         assertThat(orderArgumentCaptor.getValue().getId(), is(order.getId()));
@@ -151,7 +151,7 @@ public class OrderServiceTest {
 
     @Test
     public void saveOrder_saveCorrectOrderDetail(){
-        orderService.saveOrder(order);
+        orderService.save(order);
 
         verify(orderDetailRepository).saveAll(orderDetailsArgumentCaptor.capture());
         assertThat(matchAnyOrderDetail(StreamSupport.stream(orderDetailsArgumentCaptor.getValue().spliterator(),false)
@@ -166,12 +166,12 @@ public class OrderServiceTest {
         expectedException.expect(EntityNotFoundException.class);
         expectedException.expectMessage(String.format("Order with id %s is not found", order.getId()));
 
-        orderService.saveOrder(order);
+        orderService.save(order);
     }
 
     @Test
     public void createOrder_returnOrderWithId() {
-        orderService.createOrder(order);
+        orderService.create(order);
 
         verify(orderRepository).save(orderArgumentCaptor.capture());
         assertThat(orderArgumentCaptor.getValue().getId(), is(order.getId()));
@@ -182,7 +182,7 @@ public class OrderServiceTest {
 
     @Test
     public void createOrder_saveCorrectOrderDetail(){
-        orderService.createOrder(order);
+        orderService.create(order);
 
         verify(orderDetailRepository).saveAll(orderDetailsArgumentCaptor.capture());
         assertThat(matchAnyOrderDetail(StreamSupport.stream(orderDetailsArgumentCaptor.getValue().spliterator(),false)
@@ -197,7 +197,7 @@ public class OrderServiceTest {
         expectedException.expect(EntityNotFoundException.class);
         expectedException.expectMessage(String.format("Customer with id %s is not found", customerId));
 
-        orderService.createOrder(order);
+        orderService.create(order);
     }
 
     private boolean matchAnyOrderDetail(List<OrderDetail> orderDetailList1, List<OrderDetail> orderDetailList2) {

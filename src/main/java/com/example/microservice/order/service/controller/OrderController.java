@@ -42,14 +42,14 @@ public class OrderController {
     @PostMapping(path = "/orders")
     @ResponseBody
     public OrderDto create(@RequestBody CreateOrderDto orderDto){
-        Order order = orderService.createOrder(orderDto.createOrder());
+        Order order = orderService.create(orderDto.createOrder());
         return OrderDto.fromDomain(order);
     }
 
     @PutMapping(path = "/orders")
     @ResponseBody
     public OrderDto update(@RequestBody OrderDto orderDto){
-        Order order = orderService.saveOrder(orderDto.toDomain());
+        Order order = orderService.save(orderDto.toDomain());
         return OrderDto.fromDomain(order);
     }
 }

@@ -51,14 +51,14 @@ public class OrderService {
         return orderList;
     }
 
-    public Order saveOrder(Order order) {
+    public Order save(Order order) {
         verifyCustomer(order.getCustomerId());
         findById(order.getId());
         orderRepository.deleteById(order.getId());
         return saveOrderWithOrderDetails(order);
     }
 
-    public Order createOrder(Order order) {
+    public Order create(Order order) {
         verifyCustomer(order.getCustomerId());
         return saveOrderWithOrderDetails(order);
     }
