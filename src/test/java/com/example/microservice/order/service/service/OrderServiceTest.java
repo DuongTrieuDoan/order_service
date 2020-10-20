@@ -139,7 +139,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void saveOrder_saveCorrectOrder() {
+    public void save_saveCorrectOrder() {
         orderService.save(order);
 
         verify(orderRepository).save(orderArgumentCaptor.capture());
@@ -150,7 +150,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void saveOrder_saveCorrectOrderDetail(){
+    public void save_saveCorrectOrderDetail(){
         orderService.save(order);
 
         verify(orderDetailRepository).saveAll(orderDetailsArgumentCaptor.capture());
@@ -161,7 +161,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void saveOrder_whenOrderNotExisting_throwException() {
+    public void save_whenOrderNotExisting_throwException() {
         when(orderRepository.findById(order.getId())).thenReturn(Optional.empty());
         expectedException.expect(EntityNotFoundException.class);
         expectedException.expectMessage(String.format("Order with id %s is not found", order.getId()));
@@ -170,7 +170,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void createOrder_returnOrderWithId() {
+    public void create_returnOrderWithId() {
         orderService.create(order);
 
         verify(orderRepository).save(orderArgumentCaptor.capture());
@@ -181,7 +181,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void createOrder_saveCorrectOrderDetail(){
+    public void create_saveCorrectOrderDetail(){
         orderService.create(order);
 
         verify(orderDetailRepository).saveAll(orderDetailsArgumentCaptor.capture());
@@ -192,7 +192,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void createOrder_withCustomerNotExistingInDatabase_throwException() {
+    public void create_withCustomerNotExistingInDatabase_throwException() {
         when(customerService.verifyCustomer(customerId)).thenReturn(false);
         expectedException.expect(EntityNotFoundException.class);
         expectedException.expectMessage(String.format("Customer with id %s is not found", customerId));
