@@ -1,6 +1,6 @@
 package com.example.microservice.order.service.service;
 
-import com.example.microservice.order.service.domain.Customer;
+import com.example.microservice.order.service.model.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

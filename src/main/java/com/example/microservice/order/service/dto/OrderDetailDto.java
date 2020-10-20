@@ -1,7 +1,7 @@
 package com.example.microservice.order.service.dto;
 
-import com.example.microservice.order.service.domain.Order;
-import com.example.microservice.order.service.domain.OrderDetail;
+import com.example.microservice.order.service.model.Order;
+import com.example.microservice.order.service.model.OrderDetail;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,7 +24,7 @@ public class OrderDetailDto {
         this.totalAmount = totalAmount;
     }
 
-    public static OrderDetailDto fromDomain(com.example.microservice.order.service.domain.OrderDetail orderDetail){
+    public static OrderDetailDto fromDomain(OrderDetail orderDetail){
         return new OrderDetailDto(orderDetail.getId(),
                                   orderDetail.getCode(),
                                   orderDetail.getName(),

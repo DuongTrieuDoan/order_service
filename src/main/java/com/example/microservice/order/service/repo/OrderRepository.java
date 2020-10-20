@@ -1,7 +1,7 @@
 package com.example.microservice.order.service.repo;
 
-import com.example.microservice.order.service.domain.Order;
-import com.example.microservice.order.service.domain.OrderQuery;
+import com.example.microservice.order.service.model.Order;
+import com.example.microservice.order.service.model.OrderQuery;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

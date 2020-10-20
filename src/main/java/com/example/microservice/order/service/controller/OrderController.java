@@ -1,6 +1,6 @@
 package com.example.microservice.order.service.controller;
 
-import com.example.microservice.order.service.domain.Order;
+import com.example.microservice.order.service.model.Order;
 import com.example.microservice.order.service.dto.CreateOrderDto;
 import com.example.microservice.order.service.dto.OrderDto;
 import com.example.microservice.order.service.service.OrderService;

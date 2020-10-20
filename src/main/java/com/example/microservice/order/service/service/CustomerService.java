@@ -1,6 +1,6 @@
 package com.example.microservice.order.service.service;
 
-import com.example.microservice.order.service.domain.Customer;
+import com.example.microservice.order.service.model.Customer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

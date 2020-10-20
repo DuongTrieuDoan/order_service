@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.domain;
+package com.example.microservice.order.service.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

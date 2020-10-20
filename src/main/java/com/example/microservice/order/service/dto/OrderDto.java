@@ -1,6 +1,6 @@
 package com.example.microservice.order.service.dto;
 
-import com.example.microservice.order.service.domain.Order;
+import com.example.microservice.order.service.model.Order;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class OrderDto {
         this.customerId = customerId;
     }
 
-    public static OrderDto fromDomain(com.example.microservice.order.service.domain.Order order){
+    public static OrderDto fromDomain(Order order){
         return new OrderDto(order.getId(),
                             order.getOrderDetailList().stream()
                                                 .map(orderDetail -> OrderDetailDto.fromDomain(orderDetail))

@@ -1,8 +1,8 @@
 package com.example.microservice.order.service.service;
 
-import com.example.microservice.order.service.domain.Order;
-import com.example.microservice.order.service.domain.OrderDetail;
-import com.example.microservice.order.service.domain.OrderQuery;
+import com.example.microservice.order.service.model.Order;
+import com.example.microservice.order.service.model.OrderDetail;
+import com.example.microservice.order.service.model.OrderQuery;
 import com.example.microservice.order.service.repo.OrderDetailRepository;
 import com.example.microservice.order.service.repo.OrderRepository;
 import com.google.common.collect.Lists;

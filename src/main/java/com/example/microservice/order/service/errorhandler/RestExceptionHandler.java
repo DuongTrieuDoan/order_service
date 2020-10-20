@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.domain.errorhandler;
+package com.example.microservice.order.service.errorhandler;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

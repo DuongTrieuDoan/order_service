@@ -1,6 +1,6 @@
 package com.example.microservice.order.service.dto;
 
-import com.example.microservice.order.service.domain.Order;
+import com.example.microservice.order.service.model.Order;
 import com.google.common.collect.Lists;
 
 import java.util.List;
