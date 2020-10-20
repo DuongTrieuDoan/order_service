@@ -1,4 +1,4 @@
-package com.example.microservice.order.service.errorhandler;
+package com.example.microservice.order.service.exception;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
