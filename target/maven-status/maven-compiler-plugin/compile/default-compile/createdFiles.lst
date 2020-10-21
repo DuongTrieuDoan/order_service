@@ -1,13 +1,10 @@
-com/example/microservice/order/service/errorhandler/ApiError.class
 com/example/microservice/order/service/dto/OrderDetailDto.class
 com/example/microservice/order/service/dto/CreateOrderDto.class
 com/example/microservice/order/service/repo/OrderRepository.class
 com/example/microservice/order/service/model/Order.class
 com/example/microservice/order/service/repo/OrderDetailRepository.class
-com/example/microservice/order/service/errorhandler/ApiValidationError.class
-com/example/microservice/order/service/errorhandler/ApiSubError.class
+com/example/microservice/order/service/exception/ApiValidationError.class
 com/example/microservice/order/service/model/OrderDetail.class
-com/example/microservice/order/service/errorhandler/RestExceptionHandler.class
 com/example/microservice/order/service/dto/OrderDto.class
 com/example/microservice/order/service/model/Customer.class
 com/example/microservice/order/service/service/impl/MessageQueueService.class
@@ -16,6 +13,9 @@ com/example/microservice/order/service/model/OrderQuery$Builder.class
 com/example/microservice/order/service/controller/OrderController.class
 com/example/microservice/order/service/model/AutoValue_OrderQuery$1.class
 com/example/microservice/order/service/service/RabbitMessageQueueService.class
+com/example/microservice/order/service/exception/RestExceptionHandler.class
+com/example/microservice/order/service/exception/ApiError.class
+com/example/microservice/order/service/exception/ApiSubError.class
 com/example/microservice/order/service/model/OrderQuery.class
 com/example/microservice/order/service/service/CustomerService.class
 com/example/microservice/order/service/OrderServiceApplication.class

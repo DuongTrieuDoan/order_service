@@ -18,7 +18,7 @@ public class RabbitMessageQueueService implements MessageQueueService {
     @Override
     public <T> void publishMessage(String queue, T object){
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("rabbitmq");
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
             channel.queueDeclare(queue, false, false, false, null);
