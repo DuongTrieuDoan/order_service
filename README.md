@@ -1,23 +1,23 @@
 # order_service #
-## - RUN THE SERVICES WITH DOCKER SETUP - ##
-Create docker network bridge:
-    docker network create -d bridge my_bridge
-Run rabbitmq:
-    docker run -it --rm -d --net=my_bridge --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
-customerservice:
-    docket build -t target/customer-service-0.0.1.jar .
-    docker run -d --net=my_bridge --name customerservice -p 9090:9090 target/customer-service-0.0.1.jar
-Run orderservice:
-    docker build -t target/order-service-0.0.1.jar .
-    docker run -d --net=my_bridge -p 9191:9191 --name orderservice target/order-service-0.0.1.jar
-#----------------------#
+### - RUN THE SERVICES WITH DOCKER SETUP - 
+1. Create docker network bridge:
+    - docker network create -d bridge my_bridge
+2. Run rabbitmq:
+    - docker run -it --rm -d --net=my_bridge --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+3. customerservice:
+    - docket build -t target/customer-service-0.0.1.jar .
+    - docker run -d --net=my_bridge --name customerservice -p 9090:9090 target/customer-service-0.0.1.jar
+4. Run orderservice:
+    - docker build -t target/order-service-0.0.1.jar .
+    - docker run -d --net=my_bridge -p 9191:9191 --name orderservice target/order-service-0.0.1.jar
  
-## - RUN THE SERVICE ON LOCAL MACHINE WITH RABBITMQ DOCKER ONLY - ## 
-change all hosts to "localhost"
-RabbitMQ docker command: docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
-java -jar -Dserver.port=9090 /Users/tranthituongvi/.m2/repository/com/example/microservice/customer-service/0.0.1/customer-service-0.0.1.jar
-java -jar -Dserver.port=9191 /Users/tranthituongvi/.m2/repository/com/example/microservice/order-service/0.0.1/order-service-0.0.1.jar
+### - RUN THE SERVICE ON LOCAL MACHINE WITH RABBITMQ DOCKER ONLY -  
+- change all hosts to "localhost"
+- RabbitMQ docker command: docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+- java -jar -Dserver.port=9090 /Users/tranthituongvi/.m2/repository/com/example/microservice/customer-service/0.0.1/customer-service-0.0.1.jar
+- java -jar -Dserver.port=9191 /Users/tranthituongvi/.m2/repository/com/example/microservice/order-service/0.0.1/order-service-0.0.1.jar
 
+### - payload samples
 path: http://localhost:8080/orders
     GET: /{orderId}
         response body:
