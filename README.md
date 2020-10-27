@@ -19,6 +19,7 @@
 
 ### - payload samples
 path: http://localhost:8080/orders
+
     GET: /{orderId}
         response body:
             {
